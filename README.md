@@ -1,4 +1,4 @@
-# Smart Password Manager
+# Smart Password Manager <sup>v0.0.2</sup>
 
 ---
 
