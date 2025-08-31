@@ -1,4 +1,4 @@
-# Smart Password Manager <sup>v0.1.0</sup>
+# Smart Password Manager <sup>v0.1.1</sup>
 
 ---
 
@@ -95,8 +95,8 @@ DEBUG_TOOLBAR_ENABLED=True
 
 ```bash
 # Clone repository
-git clone https://github.com/smart_legion_lab/smart-password-manager-web.git
-cd smart-password-manager-web
+git clone https://github.com/smart_legion_lab/smart-password-manager.git
+cd smart-password-manager
 
 # Create virtual environment
 python -m venv venv
