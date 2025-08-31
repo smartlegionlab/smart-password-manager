@@ -45,7 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_avatar_url(self):
         if self.avatar and hasattr(self.avatar, 'url'):
             return self.avatar.url
-        return static('users/images/default_avatar.png')
+        return static('images/default_avatar.png')
 
     def toggle_2fa(self):
         self.is_2fa_enabled = not self.is_2fa_enabled

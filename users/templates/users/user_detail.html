@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ request.user.full_name }}{% endblock %}
+
+{% block content %}
+
+    <h1 class="display-6 text-center">
+        {{ request.user.full_name }}
+        <sup style="font-size: 16px">
+            {% if request.user.is_online %}
+                <i data-bs-toggle="tooltip" data-bs-placement="top" title="Online"
+                   class="bi bi-circle-fill text-success"></i>
+            {% else %}
+                <i data-bs-toggle="tooltip" data-bs-placement="top" title="Offline"
+                   class="bi bi-circle-fill text-danger"></i>
+            {% endif %}
+        </sup>
+    </h1>
+
+    {% if not request.user.is_online %}
+        <p class="text-center text-danger">Last activity date: <span
+            class="text-secondary">{{ request.user.last_activity|timesince }}</span> ago</p>
+    {% endif %}
+
+    <hr>
+
+    <div class="border p-3 mb-3 rounded" style="box-shadow: 0 0 5px #1b9dec">
+
+        <ul class="list-group list-group-flush">
+
+            <li class="list-group-item">
+                <strong>Name:</strong>
+                <span class="text-primary">
+                    {{ request.user.first_name }}
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Last name:</strong>
+                <span class="text-primary">
+                    {{ request.user.last_name }}
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Email:</strong>
+                <span class="text-primary">
+                    {{ request.user.email|default:"" }}
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Telegram ID:</strong>
+                <span class="text-primary">
+                    {% if request.user.telegram_chat_id %}
+                        {{ request.user.telegram_chat_id }}
+                    {% else %}
+                        <span class="text-danger">
+                            <strong>Attention! </strong>
+                            <a href="#">Add</a>
+                            your
+                            <a target="_blank" rel="noopener noreferrer" href="https://t.me/my_id_bot">
+                                Telegram chat ID</a>. It is needed to restore access to the account, as well as for two-factor authentication!
+                        </span>
+                    {% endif %}
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Two-factor authentication:</strong>
+                <span class="text-primary">
+                {% if request.user.is_2fa_enabled %}
+                    <i class="bi bi-check-circle text-success"></i>
+                {% else %}
+                    <i class="bi bi-x-circle text-danger"></i>
+                {% endif %}
+            </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Account updated:</strong>
+                <span class="text-primary">
+                    {{ request.user.updated_at|date:"d.m.Y H:i:s" }}
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Account created:</strong>
+                <span class="text-primary">
+                        {{ request.user.created_at|date:"d.m.Y H:i:s" }}
+                </span>
+            </li>
+
+        </ul>
+    </div>
+    <hr>
+{% endblock %}
+
+{% block js %}
+    {% include "users/_user_detail_js.html" %}
+{% endblock %}

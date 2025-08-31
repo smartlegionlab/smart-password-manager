@@ -1,0 +1,72 @@
+{% load core_filters %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-bs-theme="dark">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>
+        {% block title %}
+            {% if site_config.name %}
+                {{ site_config.name }}
+            {% else %}
+                Smart Password Manager
+            {% endif %}
+        {% endblock %}
+    </title>
+
+    <link href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/bootstrap_icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+
+    {% block css %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% include "nav.html" %}
+
+
+<div class="container wrapper" style="margin: 70px auto 0;">
+
+    {% include "messages.html" %}
+
+    <div class="row">
+
+        {% block main %}
+            {% if request.user.is_authenticated %}
+                <div id="blockLeft" class="col-lg-3 {% if not request|should_always_show_sidebar %}d-none d-lg-block{% endif %}">
+                <div class="sticky-top sticky-top-my">
+                    {% block sidebar %}
+                        {% include "users/user_sidebar.html" %}
+                    {% endblock %}
+                </div>
+            </div>
+
+                <div id="blockRight" class="col-lg-9">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+
+</div>
+
+
+{% include "footer.html" %}
+
+<script src="{% static 'vendors/jquery/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+{% block js %}
+{% endblock %}
+
+</body>
+
+</html>

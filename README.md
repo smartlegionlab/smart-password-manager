@@ -105,7 +105,7 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-## Running the Application <a name="running-the-application"></a>
+## Running the Application
 
 ### Development Mode
 ```bash

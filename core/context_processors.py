@@ -1,5 +1,6 @@
 from django.core.cache import cache
-from core.models.site_config import SiteConfig
+
+from core.models import SiteConfig
 
 CACHE_KEY = 'site_config_cache'
 CACHE_TIMEOUT = 300

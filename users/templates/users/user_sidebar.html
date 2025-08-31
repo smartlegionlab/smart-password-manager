@@ -1,0 +1,62 @@
+{% load static %}
+
+<div id="blockAvatar" class="text-center">
+    <figure class="figure">
+        <img src="{{ request.user.get_avatar_url }}" class="figure-img img-thumbnail img-fluid rounded" alt="Profile Picture"
+             style="box-shadow: 0 0 5px cornflowerblue">
+        <figcaption class="figure-caption text-center">
+            {% if not request.user.is_online %}
+                <strong style="cursor: help" data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="This user is currently offline." class="text-danger">
+                    Offline
+                </strong>
+            {% else %}
+                <strong class="text-success">Online
+                </strong>
+            {% endif %}
+        </figcaption>
+    </figure>
+
+    <br>
+
+    {% include "users/_user_avatar_form.html" %}
+
+</div>
+
+<hr>
+
+<div id="blockMenu">
+    <div class="btn-group-vertical w-100 figure-img img-thumbnail rounded" role="group"
+             style="box-shadow: 0 0 5px #1b9dec">
+
+            <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profile" href="{% url 'users:user_detail' %}"
+               class="btn mb-1 {% if active_page == 'profile' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                <i class="bi bi-house-door{% if active_page == 'profile' %}-fill{% endif %}"></i>
+                Profile
+            </a>
+
+        </div>
+
+        <div class="btn-group-vertical w-100 figure-img img-thumbnail rounded" role="group"
+             style="box-shadow: 0 0 5px darkred">
+            {% if request.user.is_superuser %}
+                <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings" href='#'
+               class="btn mb-1 {% if active_page == 'settings' %}btn-success{% else %}btn-outline-success{% endif %}">
+                <i class="bi bi-cpu{% if active_page == 'admin_panel' %}-fill{% endif %}"></i> Admin Panel
+            </a>
+                <a target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings" href='{% url "admin:index" %}'
+               class="btn mb-1 {% if active_page == 'settings' %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+                <i class="bi bi-cpu"></i> Admin (Django)
+            </a>
+            {% endif %}
+            <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Settings" href='{% url "users:user_update" %}'
+               class="btn mb-1 {% if active_page == 'settings' %}btn-warning{% else %}btn-outline-warning{% endif %}">
+                <i class="bi bi-gear{% if active_page == 'settings' %}-fill{% endif %}"></i> Settings
+            </a>
+            <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Change password"
+               href='{% url "users:password_change" %}'
+               class="btn mb-1 {% if active_page == 'password' %}btn-danger{% else %}btn-outline-danger{% endif %}">
+                <i class="bi bi-lock{% if active_page == 'password' %}-fill{% endif %}"></i> Change password
+            </a>
+        </div>
+</div>

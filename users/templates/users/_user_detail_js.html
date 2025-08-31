@@ -1,0 +1,28 @@
+<script>
+
+    $( document ).ready(function() {
+
+        $('#changePhotoBtn').click(function () {
+            $('#uploadForm').toggle();
+        });
+
+        $('#resetPhoto').on('click', function () {
+            if (confirm('Are you sure you want to remove your profile photo and set it to default avatar?')) {
+                $.ajax({
+                    url: "{% url 'users:avatar_reset' %}",
+                    type: "POST",
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        alert(`Error! ${error}`);
+                    }
+                });
+            }
+        });
+    });
+
+    </script>

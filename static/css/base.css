@@ -1,0 +1,224 @@
+/*Base*/
+html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .wrapper {
+            flex: 1 0 auto;
+        }
+
+        footer {
+            flex-shrink: 0;
+            color: white;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: dodgerblue;
+        }
+
+    /*    .sticky-top-my {*/
+    /*    position: sticky;*/
+    /*    top: 80px;*/
+    /*    height: calc(100vh - 100px);*/
+    /*    !*overflow-y: auto;*!*/
+    /*}*/
+
+        .post-text {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        overflow-wrap: break-word;
+    }
+
+        #toast-container {
+    max-width: 350px;
+}
+
+#generate-password {
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+#generate-password[disabled] {
+    opacity: 0.7;
+}
+
+/*User reports*/
+.form-control.is-invalid,
+    .form-control.is-invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+
+    .was-validated .form-control:valid,
+    .was-validated .form-control:valid:focus {
+        border-color: #ced4da;
+        box-shadow: none;
+    }
+
+    .was-validated .form-control:invalid,
+    .was-validated .form-control:invalid:focus {
+        border-color: #dc3545;
+        box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    }
+
+    .form-control[type="file"] {
+        padding: 0.75rem;
+    }
+
+    .form-control[type="file"]::file-selector-button {
+        padding: 0.75rem 1.5rem;
+        margin-right: 1rem;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 0.375rem;
+        transition: all 0.2s;
+    }
+
+    .form-control[type="file"]::file-selector-button:hover {
+        background-color: #e9ecef;
+    }
+
+    .card {
+        border-radius: 15px;
+        border: none;
+    }
+
+    textarea.form-control {
+        min-height: 150px;
+    }
+
+    .btn-lg {
+        padding: 0.7rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 10px;
+    }
+
+    .invalid-feedback {
+        display: none;
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 0.875em;
+        color: #dc3545;
+    }
+
+    .is-invalid ~ .invalid-feedback,
+    .was-validated :invalid ~ .invalid-feedback {
+        display: block;
+    }
+
+.form-control[type="file"] {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border-color: #495057;
+}
+
+.form-control[type="file"]::file-selector-button {
+    background-color: #495057;
+    color: #f8f9fa;
+    border-color: #6c757d;
+}
+
+.form-control[type="file"]::file-selector-button:hover {
+    background-color: #5a6268;
+}
+
+
+.input-wrapper {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+}
+
+.btn-group-my {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/*Admin*/
+.profile-link {
+    position: relative;
+    color: #0d6efd !important;
+    padding-bottom: 3px;
+    display: inline-block;
+  }
+
+  .name-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .name-wrapper::before,
+  .name-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0d6efd;
+    transition: width 0.3s ease;
+  }
+
+  .name-wrapper::before {
+    left: 50%;
+  }
+
+  .name-wrapper::after {
+    right: 50%;
+  }
+
+  .profile-link:hover .name-wrapper::before,
+  .profile-link:hover .name-wrapper::after {
+    width: 50%;
+  }
+
+  .profile-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .profile-link sup {
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .profile-link:hover sup {
+    color: #ffc107 !important;
+    transform: scale(1.1);
+  }
+
+
+footer {
+    font-size: 1rem;
+}
+
+@media (max-width: 991.98px) {
+    footer {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    footer {
+        font-size: 0.8rem;
+    }
+
+    .text-center.p-2 {
+        padding: 0.5rem !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    footer {
+        font-size: 0.7rem;
+    }
+}

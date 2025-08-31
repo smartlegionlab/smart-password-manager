@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark btn-secondary fixed-top"
+     style="box-shadow: 0 0 5px cornflowerblue;">
+    <div class="container">
+        <a class="navbar-brand me-auto" href="{% url "users:user_detail" %}">
+            <span data-bs-toggle="tooltip" data-bs-placement="bottom" title="
+                    {% if site_config.description %}{{ site_config.description }}{% else %}Smart Password Manager{% endif %}">
+                {% if site_config.name %}{{ site_config.name }}{% else %}Smart Password Manager{% endif %}
+            </span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="true">
+                            {% if request.user.full_name %}
+                                {{ request.user.full_name }}
+                            {% else %}
+                                {{ request.user.email }}
+                            {% endif %}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="{% url "users:user_detail" %}"><i
+                                    class="bi bi-house-door-fill"></i> Profile</a></li>
+                            {% if request.user.is_superuser %}
+                                <li><a class="dropdown-item text-primary" href="#">
+                                    Admin Panel</a></li>
+                                <li><a target="_blank" rel="noopener noreferrer" class="dropdown-item text-danger" href="{% url "admin:index" %}"><i
+                                        class="bi bi-cpu"></i> Admin (Django)</a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item" href="{% url "users:logout" %}">
+                                Exit</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    {% if request.path != '/login/' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url "users:login" %}">Sign in/Sign up</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

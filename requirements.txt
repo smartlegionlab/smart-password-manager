@@ -6,4 +6,5 @@ pillow==11.3.0
 psycopg2-binary==2.9.10
 python-dotenv==1.1.1
 redis==6.4.0
+smartpasslib==1.0.4
 sqlparse==0.5.3
