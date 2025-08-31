@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # Local applications
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
+    'smart_pass_man.apps.SmartPassManConfig',
 
     # Third-party applications
      'debug_toolbar',
