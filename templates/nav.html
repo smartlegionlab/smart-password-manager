@@ -26,16 +26,15 @@
                             {% endif %}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{% url "users:user_detail" %}"><i
-                                    class="bi bi-house-door-fill"></i> Profile</a></li>
+                            <li><a class="dropdown-item text-primary" href="{% url "users:user_detail" %}"><i
+                                    class="bi bi-house-door-fill text-primary"></i> Profile</a></li>
                             {% if request.user.is_superuser %}
-                                <li><a class="dropdown-item text-primary" href="#">
-                                    Admin Panel</a></li>
-                                <li><a target="_blank" rel="noopener noreferrer" class="dropdown-item text-danger" href="{% url "admin:index" %}"><i
-                                        class="bi bi-cpu"></i> Admin (Django)</a></li>
+                                <li><a class="dropdown-item text-success" href="#">
+                                    <i class="bi bi-cpu"></i> Admin Panel</a></li>
+                                <li><a target="_blank" rel="noopener noreferrer" class="dropdown-item text-warning" href="{% url "admin:index" %}"><i class="bi bi-cpu"></i> Admin (Django)</a></li>
                             {% endif %}
                             <li><a class="dropdown-item" href="{% url "users:logout" %}">
-                                Exit</a></li>
+                                <i class="bi bi-door-closed"></i> Exit</a></li>
                         </ul>
                     </li>
                 {% else %}

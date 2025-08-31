@@ -37,7 +37,7 @@
 
             <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Smart Password Manager" href="{% url "smart_password_manager:smart_password_list" %}"
                class="btn mb-1 {% if active_page == 'manager' %}btn-primary{% else %}btn-outline-primary{% endif %}">
-                <i class="bi bi-house-door{% if active_page == 'manager' %}-fill{% endif %}"></i>
+                <i class="bi bi-lock{% if active_page == 'manager' %}-fill{% endif %}"></i>
                 Smart Password Manager
             </a>
 

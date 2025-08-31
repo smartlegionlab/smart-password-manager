@@ -80,7 +80,7 @@
             <li class="list-group-item">
                 <strong>Account updated:</strong>
                 <span class="text-primary">
-                    {{ request.user.updated_at|date:"d.m.Y H:i:s" }}
+                    {{ request.user.updated_at|timesince }} ago
                 </span>
             </li>
 
