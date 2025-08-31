@@ -2,6 +2,14 @@
 
 ---
 
+Smart Password Manager web version
+
+---
+
+![LOGO](https://github.com/smartlegionlab/smart-password-manager/raw/master/data/images/smart_password_manager.png)
+
+---
+
 ## PostgreSQL
 
 ### Installation
