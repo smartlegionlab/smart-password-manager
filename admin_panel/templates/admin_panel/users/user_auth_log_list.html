@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile Authentication History{% endblock %}
+
+{% block sidebar %}
+    {% include "admin_panel/users/_user_sidebar.html" with active_page='logs' %}
+{% endblock %}
+
+
+{% block content %}
+
+    <h1 class="text-center display-6">Profile Authentication History: <sup>{{ log_count }}</sup></h1>
+    <hr>
+    <div class="btn-group btn-group-sm">
+            <a onclick="return confirm('Are you sure? All entries will be deleted permanently. Entries will be deleted: {{ log_count }}')"
+               href="{% url "admin_panel:admin_user_auth_log_all_delete" user.id %}" type="button"
+               class="btn btn-outline-danger{% if not log_count %} disabled{% endif %}" data-bs-toggle="tooltip"
+               data-bs-placement="top" title="Delete all ({{ log_count }})">
+                <i class="bi bi-trash"></i> Delete all <sup>{{ log_count }}</sup>
+            </a>
+
+    </div>
+    <hr>
+    {% if has_logs %}
+        <div class="table-responsive">
+        <table id="logsTable" class="table table-bordered table-striped">
+            <thead>
+            <tr class="table-primary">
+                <th scope="col">IP</th>
+                <th scope="col">User Agent</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for log in page_obj %}
+                    <tr>
+                        <td>{{ log.ip }}</td>
+                        <td>{{ log.user_agent }}</td>
+                        <td>{{ log.timestamp|date:"d.m.Y H:i:s"}}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group">
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"
+                                   href="{% url "admin_panel:admin_user_auth_log_detail" log.id %}"
+                                   class="btn btn-outline-info">
+                                    <i class="bi bi-eye-fill"></i>
+                                </a>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" title="Delete"
+                                   href="{% url "admin_panel:admin_user_auth_log_delete" log.id %}"
+                                   class="btn btn-outline-danger"
+                                   onclick="return confirm('Are you sure you want to delete?');">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        {% if page_obj.has_other_pages %} {% include "paginator.html" %} {% endif %}
+    {% else %}
+        <div class="alert alert-primary" role="alert">
+            Logs not found...
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,5 +1,10 @@
 from django.urls import path
 
+from admin_panel.views.auth_logs.auth_log_delete import auth_log_delete_view
+from admin_panel.views.auth_logs.auth_log_detail import auth_log_detail_view
+from admin_panel.views.auth_logs.auth_log_get_ip_info import auth_log_get_ip_info_view
+from admin_panel.views.auth_logs.auth_log_list import auth_log_list_view
+from admin_panel.views.auth_logs.auth_logs_clear import auth_logs_clear_view
 from admin_panel.views.panel import admin_panel_view
 from admin_panel.views.site_config.site_config_detail import site_config_detail_view
 from admin_panel.views.site_config.site_config_update import site_config_update_view
@@ -42,12 +47,10 @@ urlpatterns += [
 ]
 
 # User auth logs
-# urlpatterns += [
-#     path('auth-logs/<int:pk>/history/', auth_log_list_view, name='admin_user_auth_log'),
-#     path('auth-logs/<int:pk>/clear/', auth_logs_clear_view, name='admin_user_auth_log_all_delete'),
-#     path('auth-logs/<int:log_id>/delete/', auth_log_delete_view, name='admin_user_auth_log_delete'),
-#     path('auth-logs/<int:log_id>/detail/',
-#          auth_log_detail, name='admin_user_auth_log_detail'),
-#     path('auth-logs/<int:log_id>/refresh/', auth_log_get_ip_info_view,
-#          name='admin_user_auth_refresh_ip_info'),
-# ]
+urlpatterns += [
+    path('auth-logs/<int:pk>/history/', auth_log_list_view, name='admin_user_auth_logs'),
+    path('auth-logs/<int:pk>/clear/', auth_logs_clear_view, name='admin_user_auth_log_all_delete'),
+    path('auth-logs/<int:log_id>/delete/', auth_log_delete_view, name='admin_user_auth_log_delete'),
+    path('auth-logs/<int:log_id>/detail/', auth_log_detail_view, name='admin_user_auth_log_detail'),
+    path('auth-logs/<int:log_id>/refresh/', auth_log_get_ip_info_view, name='admin_user_auth_refresh_ip_info'),
+]
