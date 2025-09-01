@@ -8,3 +8,4 @@ python-dotenv==1.1.1
 redis==6.4.0
 smartpasslib==1.0.4
 sqlparse==0.5.3
+psutil==6.1.1

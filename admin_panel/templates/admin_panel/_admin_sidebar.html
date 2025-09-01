@@ -30,4 +30,10 @@
         {% endif %}
     </a>
 
+    <a data-bs-toggle="tooltip" data-bs-placement="top" title="System Info" href="{% url 'admin_panel:system_info' %}"
+       class="btn mb-2 {% if active_page == 'system' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+        <i class="bi bi-cpu"></i>
+        System Info
+    </a>
+
 </div>
