@@ -38,7 +38,7 @@ class SmartPasswordService:
                 secret=secret_phrase
             )
 
-            if SmartPassword.objects.filter(user=user, public_key=public_key).exists():
+            if SmartPassword.objects.filter(user=user, public_key=public_key, length=length).exists():
                 raise ValidationError("Smart Password already exists!")
 
             smart_password = SmartPassword(
