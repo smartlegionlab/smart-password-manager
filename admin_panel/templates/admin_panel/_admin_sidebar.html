@@ -36,4 +36,10 @@
         System Info
     </a>
 
+    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Profiles"
+       href="{% url 'admin_panel:admin_user_list' %}"
+       class="btn mb-2 bi-people-fill {% if active_page == 'profiles' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+        Profiles
+    </a>
+
 </div>

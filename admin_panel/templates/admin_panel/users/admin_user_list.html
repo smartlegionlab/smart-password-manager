@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profiles{% endblock %}
+
+{% block sidebar %}
+    {% include "admin_panel/_admin_sidebar.html" with active_page='profiles' %}
+{% endblock %}
+
+
+{% block content %}
+
+    <h2 style="text-align: center" class="display-6">Profiles: <sup>{{ user_count }}</sup></h2>
+    <hr>
+    <div class="btn-group btn-group-sm" role="group">
+        <a data-bs-toggle="tooltip" data-bs-placement="top" title="Create new profile"
+           class="btn btn-sm btn-success mt-2" href="{% url "admin_panel:admin_user_create" %}">+ <i
+                class="bi bi-person-fill"></i></a>
+    </div>
+    <hr>
+    {% if has_users %}
+        <div class="table-responsive">
+        <table id="profilesTable" class="table table-bordered table-striped">
+            <thead>
+            <tr class="table-primary">
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Is active</th>
+                <th>Admin</th>
+                <th>Last Activity</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in page_obj %}
+                <tr>
+                    <td><a href="{% url "admin_panel:admin_user_detail" user.id %}" class="text-decoration-none">{{ user.full_name }}</a></td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if user.is_active %}
+                            <i class="bi bi-check-circle text-success" title="Active"></i>
+                        {% else %}
+                            <i class="bi bi-x-circle text-danger" title="Inactive"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.is_super_user %}
+                            <i class="bi bi-check-circle text-success" title="Is Superuser"></i>
+                        {% else %}
+                            <i class="bi bi-x-circle text-danger" title="Not Superuser"></i>
+                        {% endif %}
+                    </td>
+                    <td>{{ user.last_activity|date:"d.m.Y H:i:s" }}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group">
+                             <a href="{% url "admin_panel:admin_user_detail" user.id %}" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Profile"><i class="bi bi-eye-fill"></i></a>
+                            <a href="{% url "admin_panel:admin_user_block" user.id %}" class="btn {% if user.is_active %}bi-lock btn-outline-warning{% else %}bi-unlock btn-success{% endif %}" onclick="return confirm('{% if user.is_active %}Block profile{% else %}Unblock profile{% endif %}');" data-bs-toggle="tooltip" data-bs-placement="top" title="{% if user.is_active %}Block profile{% else %}Unblock profile{% endif %}"></a>
+                            <a href="{% url "admin_panel:admin_user_delete" user.id %}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete?');" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete profile"><i class="bi bi-trash-fill"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        {% if page_obj.has_other_pages %} {% include "paginator.html" %} {% endif %}
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            Users not found...
+        </div>
+    {% endif %}
+
+{% endblock %}

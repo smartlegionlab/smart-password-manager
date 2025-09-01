@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'auth_logs.apps.AuthLogsConfig',
 
     # Third-party applications
-     'debug_toolbar',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.full_name }}'s user{% endblock %}
+
+{% block sidebar %}
+    {% include "admin_panel/users/_user_sidebar.html" with active_page="detail" %}
+{% endblock %}
+
+{% block content %}
+    <hr>
+    <h1 class="text-center display-6">{{ user.full_name }} <sup>{% if user.is_active %}
+        <span class="text-success">Active</span>{% else %}<span class="text-danger">Blocked</span>{% endif %}</sup></h1>
+    <hr>
+    <div class="border p-3 mb-3">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Name:</strong> <span
+                    class="text-primary">{{ user.first_name }}</span></li>
+            <li class="list-group-item"><strong>Last name:</strong> <span
+                    class="text-primary">{{ user.last_name }}</span></li>
+            <li class="list-group-item"><strong>Email:</strong> <span class="text-primary">{% if user.email %}
+                {{ user.email }}{% endif %}</span></li>
+            <li class="list-group-item">
+                <strong>Telegram ID:</strong>
+                <span class="text-primary">
+                                {% if user.telegram_chat_id %}
+                                    {{ user.telegram_chat_id }}
+                                    {% else %}{% if is_owner %}
+                                        <span class="text-danger">
+                                            <strong>Attention! </strong>
+                                            <a href="{% url "users:user_update" %}">Add</a>
+                                            your
+                                            <a target="_blank" rel="noopener noreferrer" href="https://t.me/my_id_bot">
+                                                Telegram chat ID</a>. It is needed to restore access to the account, as well as for two-factor authentication!
+                                        </span>
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+            </li>
+            <li class="list-group-item">
+                <strong>Two-factor authentication:</strong>
+                <span class="text-primary">
+                                {% if user.is_2fa_enabled %}
+                                    <i class="bi bi-check-circle text-success"></i>
+                                {% else %}
+                                    <i class="bi bi-x-circle text-danger"></i>
+                                {% endif %}
+                            </span>
+            </li>
+            <li class="list-group-item"><strong>Is active:</strong>
+                <span class="text-primary">
+                    {% if user.is_active %}
+                        <i class="bi bi-check-circle text-success" title="Active"></i>
+                    {% else %}
+                        <i class="bi bi-x-circle text-danger" title="Inactive"></i>
+                    {% endif %}
+                </span>
+            </li>
+            <li class="list-group-item"><strong>Is Superuser:</strong>
+                <span class="text-primary">
+                    {% if user.is_superuser %}
+                        <i class="bi bi-check-circle text-success" title="Is Superuser"></i>
+                    {% else %}
+                        <i class="bi bi-x-circle text-danger" title="Not Superuser"></i>
+                    {% endif %}
+                </span>
+            </li>
+            <li class="list-group-item"><strong>Account updated:</strong> <span
+                    class="text-primary">{{ user.updated_at|date:"d.m.Y H:i:s" }}</span></li>
+            <li class="list-group-item"><strong>Account created:</strong> <span
+                    class="text-primary">{{ user.created_at|date:"d.m.Y H:i:s" }}</span></li>
+        </ul>
+    </div>
+{% endblock %}

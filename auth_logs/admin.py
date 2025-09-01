@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from auth_logs.models import UserAuthLog
+
+admin.site.register(UserAuthLog)
