@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 from smartpasslib import SmartPasswordMaster, UrandomGenerator, HashGenerator
 
+from auth_logs.models import UserAuthLog
+from core.utils.informers.request_info import RequestInfo
 from core.utils.smart_redis.smart_redis_storage import RedisStorageManager
 from users.forms.login_form import LoginForm
 from users.models import User
@@ -72,6 +74,12 @@ def login_view(request):
                     return redirect('users:login')
 
             login(request, user)
+            request_informer = RequestInfo(request)
+            UserAuthLog.objects.create(
+                user=user,
+                ip=request_informer.ip,
+                user_agent=request_informer.user_agent,
+            )
             messages.success(request, f'{user.full_name}, welcome!')
             return redirect('users:user_detail')
 

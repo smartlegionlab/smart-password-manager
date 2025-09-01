@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'smart_pass_man.apps.SmartPassManConfig',
     'admin_panel.apps.AdminPanelConfig',
+    'auth_logs.apps.AuthLogsConfig',
 
     # Third-party applications
      'debug_toolbar',

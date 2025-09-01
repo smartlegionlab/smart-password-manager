@@ -47,11 +47,11 @@
              style="box-shadow: 0 0 5px darkred">
             {% if request.user.is_superuser %}
                 <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Admin Panel" href='{% url "admin_panel:admin_panel" %}'
-               class="btn mb-1 {% if active_page == 'settings' %}btn-success{% else %}btn-outline-success{% endif %}">
+               class="btn mb-1 {% if active_page == 'admin_panel' %}btn-success{% else %}btn-outline-success{% endif %}">
                 <i class="bi bi-cpu{% if active_page == 'admin_panel' %}-fill{% endif %}"></i> Admin Panel
             </a>
                 <a target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Admin Django" href='{% url "admin:index" %}'
-               class="btn mb-1 {% if active_page == 'settings' %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+               class="btn mb-1 {% if active_page == 'admin_django' %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
                 <i class="bi bi-cpu"></i> Admin (Django)
             </a>
             {% endif %}

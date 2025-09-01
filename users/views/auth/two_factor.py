@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
+from auth_logs.models import UserAuthLog
+from core.utils.informers.request_info import RequestInfo
 from core.utils.smart_redis.smart_redis_storage import RedisStorageManager
 from users.models import User
 from users.utils.auth.clear_session import clear_session_data
@@ -139,6 +141,13 @@ def _handle_successful_login(request, redis, user_id):
         }, status=400)
 
     login(request, user)
+
+    request_informer = RequestInfo(request)
+    UserAuthLog.objects.create(
+        user=user,
+        ip=request_informer.ip,
+        user_agent=request_informer.user_agent,
+    )
 
     user = User.objects.get(id=user.id)
 
