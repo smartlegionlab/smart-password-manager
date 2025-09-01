@@ -19,4 +19,15 @@
        class="btn mb-2 bi-house-door-fill {% if active_page == 'panel' %}btn-primary{% else %}btn-outline-primary{% endif %}">
         Admin Panel <sup id="sidebarLogCount"></sup>
     </a>
+
+    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Site Config" href="{% url 'admin_panel:site_config' %}"
+       class="btn mb-2 {% if active_page == 'settings' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+        {% if not site_config.has_empty_fields %}
+            <i class="bi bi-gear text-danger"></i>
+            <span class="text-danger">Site Config</span> <sup class="text-danger">!</sup>
+        {% else %}
+            <i class="bi bi-gear"></i> Site Config
+        {% endif %}
+    </a>
+
 </div>
