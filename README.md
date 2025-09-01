@@ -1,8 +1,8 @@
-# Smart Password Manager <sup>v0.1.2</sup>
+# Smart Password Manager <sup>v1.0.1</sup>
 
 ---
 
-Smart Password Manager web version
+Smart Password Manager web version.
 
 ---
 
