@@ -1,0 +1,22 @@
+
+<div class="figure-img img-thumbnail rounded" style="margin: 5px; box-shadow: 0 0 5px yellow; padding: 20%">
+    {% include 'admin_panel/svg/incognito.html' %}
+</div>
+
+<div class="text-center">
+    <p class="d-inline-block position-relative">
+        <a href="{% url 'users:user_detail' %}" class="profile-link text-decoration-none text-primary">
+            <span class="name-wrapper">{{ request.user.full_name }}</span>
+            <sup class="text-warning">Admin</sup>
+        </a>
+    </p>
+</div>
+
+<div class="btn-group-vertical w-100 figure-img img-thumbnail rounded" role="group"
+     style="margin: 5px; box-shadow: 0 0 5px yellow">
+
+    <a data-bs-toggle="tooltip" data-bs-placement="top" title="Admin Panel" href="{% url 'admin_panel:admin_panel' %}"
+       class="btn mb-2 bi-house-door-fill {% if active_page == 'panel' %}btn-primary{% else %}btn-outline-primary{% endif %}">
+        Admin Panel <sup id="sidebarLogCount"></sup>
+    </a>
+</div>

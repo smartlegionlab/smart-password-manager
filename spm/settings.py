@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
     'smart_pass_man.apps.SmartPassManConfig',
+    'admin_panel.apps.AdminPanelConfig',
 
     # Third-party applications
      'debug_toolbar',
@@ -49,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-
+    'admin_panel.middleware.admin_access.AdminAccessMiddleware',
     'users.middleware.user_activity.UpdateLastActivityMiddleware',
 ]
 
