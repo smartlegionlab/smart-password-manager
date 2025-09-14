@@ -7,6 +7,7 @@ Smart Password Manager web version.
 ---
 
 ![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smart-password-manager)
+[![GitHub](https://img.shields.io/github/license/smartlegionlab/smart-password-manager)](https://github.com/smartlegionlab/smart-password-manager/blob/master/LICENSE)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smart-password-manager)](https://github.com/smartlegionlab/smart-password-manager/)
 [![GitHub Repo stars](https://img.shields.io/github/stars/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/)
 [![GitHub watchers](https://img.shields.io/github/watchers/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/)
