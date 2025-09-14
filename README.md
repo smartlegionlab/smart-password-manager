@@ -6,6 +6,14 @@ Smart Password Manager web version.
 
 ---
 
+![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smart-password-manager)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/smartlegionlab/smart-password-manager)](https://github.com/smartlegionlab/smart-password-manager/)
+[![GitHub Repo stars](https://img.shields.io/github/stars/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/)
+[![GitHub watchers](https://img.shields.io/github/watchers/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/)
+[![GitHub forks](https://img.shields.io/github/forks/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/)
+
+---
+
 ![LOGO](https://github.com/smartlegionlab/smart-password-manager/raw/master/data/images/smart_password_manager.png)
 
 ---
@@ -136,7 +144,7 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 - You are free to use, modify, and distribute this software.
 - **However, if you modify this software and run it as a hosted service (e.g., a web app), you MUST make the full source code of your modified version available to your users under the same license.**
-- The full license text can be found in the **LICENSE** file.
+- The full license text can be found in the [LICENSE](https://github.com/smartlegionlab/smart-password-manager/blob/master/LICENSE) file.
 
 ### ⚠️ Important Disclaimer
 
