@@ -136,7 +136,7 @@ This project is licensed under the **GNU Affero General Public License v3.0 (AGP
 
 - You are free to use, modify, and distribute this software.
 - **However, if you modify this software and run it as a hosted service (e.g., a web app), you MUST make the full source code of your modified version available to your users under the same license.**
-- The full license text can be found in the [LICENSE](LICENSE) file.
+- The full license text can be found in the **LICENSE** file.
 
 ### ⚠️ Important Disclaimer
 
