@@ -139,6 +139,20 @@ User and password for DB is: user (postgres); password (postgres).
 
 ***
 
+*And check out the implementation that makes this possible:*
+
+- [Smart Password Library on GitHub](https://github.com/smartlegionlab/smartpasslib)
+- [Smart Password Library on PyPi](https://pypi.org/project/smartpasslib/)
+
+- [Chrono-Library Messenger](https://github.com/smartlegionlab/chrono-library-messenger)
+- [Console Smart Password Generator on GitHub](https://github.com/smartlegionlab/clipassgen)
+- [Console Smart Password Manager on GitHub](https://github.com/smartlegionlab/clipassman)
+- [Smart Password Manager Desktop version GitHub](https://github.com/smartlegionlab/smart-password-manager-desktop)
+
+- [Article on dev.to: The Password That Never Was: How to Access Secrets That Were Always There. Smart Password Library. 🔐](https://dev.to/smartlegionlab/the-password-that-never-was-how-to-access-secrets-that-were-always-there-smart-password-library-4h16)
+
+---
+
 ## 📜 License & Disclaimer
 
 BSD 3-Clause License
