@@ -1,4 +1,10 @@
-# Smart Password Manager Web <sup>v1.1.1</sup>
+# Smart Password Manager Web <sup>v1.2.0</sup>
+
+---
+
+> Note: This is a production-ready password manager. For academic research on the underlying security paradigm, see [The Pointer-Based Security Paradigm](https://doi.org/10.5281/zenodo.17204738).
+
+---
 
 [![GitHub top language](https://img.shields.io/github/languages/top/smartlegionlab/smart-password-manager)](https://github.com/smartlegionlab/smart-password-manager)
 [![GitHub license](https://img.shields.io/github/license/smartlegionlab/smart-password-manager)](https://github.com/smartlegionlab/smart-password-manager/blob/master/LICENSE)
@@ -8,24 +14,15 @@
 
 ## 🌐 Web-Based Smart Password Management
 
-A professional Django-based web application for managing and generating smart passwords with deterministic cryptography. Provides a comprehensive web interface for secure password management.
+Smart Password Manager (web version).
 
-> **Powered by** [smartpasslib](https://github.com/smartlegionlab/smartpasslib) - The core library for deterministic password generation
-
-## 🌟 Key Features
-
-- 🌐 **Web-Based Interface** - Access your password manager from any device
-- 🔒 **Zero Password Storage** - Passwords generated on-demand, never stored in database
-- 🎨 **Responsive Design** - Works seamlessly on desktop and mobile devices
-- 📁 **Project Organization** - Organize credentials by projects and categories
-- 🔍 **Advanced Search** - Quickly find and manage your login information
-- ⚡ **Real-Time Generation** - Instant password generation with cryptographic security
+> **Powered by** [smartpasslib](https://github.com/smartlegionlab/smartpasslib) - The core library for deterministic password generation.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - **Python 3.8+** 
-- **PostgreSQL** (recommended) or SQLite
+- **PostgreSQL**
 - **Redis** (for Celery tasks, optional)
 
 ### Installation
@@ -130,9 +127,8 @@ Admin interface: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 ### Technology Stack
 - **Backend**: Django 5.2+
-- **Database**: PostgreSQL (recommended) or SQLite
+- **Database**: PostgreSQL
 - **Frontend**: HTML5, CSS3, JavaScript
-- **Security**: SHA3-512, deterministic cryptography
 - **Task Queue**: Celery with Redis (optional)
 
 ### Database Configuration
@@ -154,55 +150,9 @@ This web application is part of a comprehensive suite:
 - [**CLI PassGen**](https://github.com/smartlegionlab/clipassgen/) - Command-line password generator
 - [**CLI PassMan**](https://github.com/smartlegionlab/clipassman/) - Console-based password manager
 
-### 🤖 Mobile Integration
-- [**Telegram Bot**](https://t.me/smartpasswordmanagerbot) - Mobile password management
-
 ### 💡 Core Technology
 - [**SmartPassLib**](https://github.com/smartlegionlab/smartpasslib) - Core password generation library
 
-## 🛡️ Security Features
-
-- **No Password Storage** - Credentials generated on-demand
-- **PostgreSQL Security** - Enterprise-grade database security
-- **Django Security** - Built-in protection against common vulnerabilities
-- **Cryptographic Security** - SHA3-512 and system entropy
-- **Environment Variables** - Secure configuration management
-
-## 📖 Related Resources
-
-Learn about the technology behind this application:
-- [**The Password That Never Was**](https://dev.to/smartlegionlab/the-password-that-never-was-how-to-access-secrets-that-were-always-there-smart-password-library-4h16) - Technical foundation
-- [**SmartPassLib Documentation**](https://github.com/smartlegionlab/smartpasslib) - Core library documentation
-
-## 🚀 Production Deployment
-
-For production deployment, consider:
-- Using PostgreSQL with secure credentials
-- Setting `DEBUG=False`
-- Using environment-specific settings
-- Configuring proper SSL/TLS certificates
-- Setting up backup strategies
-
-## 🐛 Issue Reporting
-
-Found a bug or have a feature request? Please [create an issue](https://github.com/smartlegionlab/smart-password-manager/issues) on GitHub.
-
-## 💻 Development
-
-### Development Setup with PyCharm
-- Database user: `postgres`
-- Database password: `postgres`
-- Configure PostgreSQL data source in PyCharm
-
-### Testing
-```bash
-# Run tests
-python manage.py test
-
-# Run with coverage
-coverage run manage.py test
-coverage report
-```
 
 ## 📜 License
 
@@ -223,12 +173,3 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-## 🌟 Professional Web-Based Password Management
-
-Experience enterprise-grade password management with the security of deterministic cryptography and the convenience of web accessibility.
-
-**Ready to deploy?** [Get started](https://github.com/smartlegionlab/smart-password-manager) with the web version of our smart password ecosystem.
-
----
-
-*Explore more professional tools at [Smart Legion Lab](https://github.com/smartlegionlab)*
