@@ -183,10 +183,6 @@ For production deployment, consider:
 - Configuring proper SSL/TLS certificates
 - Setting up backup strategies
 
-## 🐛 Issue Reporting
-
-Found a bug or have a feature request? Please [create an issue](https://github.com/smartlegionlab/smart-password-manager/issues) on GitHub.
-
 ## 💻 Development
 
 ### Development Setup with PyCharm
