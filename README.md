@@ -21,19 +21,6 @@ A professional Django-based web application for managing and generating smart pa
 - 🔍 **Advanced Search** - Quickly find and manage your login information
 - ⚡ **Real-Time Generation** - Instant password generation with cryptographic security
 
-## 🌌 The Paradox at the Core
-
-This tool embodies a beautiful cryptographic paradox: **perfect reproducibility meets complete unpredictability**. 
-
-The system is both:
-- **Perfectly reproducible** - Identical inputs (login + secret phrase) will always generate the exact same password, every time, on any device
-- **Completely unpredictable** - Without the exact inputs, the output is computationally impossible to guess or reverse-engineer
-
-This paradox is powered by deterministic cryptography - the same revolutionary concept explored in our foundational articles:
-- [**The Password That Never Was**](https://dev.to/smartlegionlab/the-password-that-never-was-how-to-access-secrets-that-were-always-there-smart-password-library-4h16) - How passwords emerge from mathematical space rather than being created
-- [**Chrono-Library Messenger**](https://dev.to/smartlegionlab/i-created-a-messenger-that-doesnt-send-any-data-heres-how-it-works-4ecp) - The cryptographic framework enabling this paradigm
-- [**Messages That Have Always Been With Us**](https://dev.to/smartlegionlab/the-magic-of-messages-that-have-always-been-with-us-48gp) - Philosophical foundation of pre-existing information
-
 Your passwords don't need to be stored because they were never created - they already exist as mathematical certainties, waiting to be discovered through the correct combination of login and secret phrase.
 
 ---
@@ -171,9 +158,6 @@ This web application is part of a comprehensive suite:
 - [**CLI PassGen**](https://github.com/smartlegionlab/clipassgen/) - Command-line password generator
 - [**CLI PassMan**](https://github.com/smartlegionlab/clipassman/) - Console-based password manager
 
-### 🤖 Mobile Integration
-- [**Telegram Bot**](https://t.me/smartpasswordmanagerbot) - Mobile password management
-
 ### 💡 Core Technology
 - [**SmartPassLib**](https://github.com/smartlegionlab/smartpasslib) - Core password generation library
 
@@ -188,7 +172,6 @@ This web application is part of a comprehensive suite:
 ## 📖 Related Resources
 
 Learn about the technology behind this application:
-- [**The Password That Never Was**](https://dev.to/smartlegionlab/the-password-that-never-was-how-to-access-secrets-that-were-always-there-smart-password-library-4h16) - Technical foundation
 - [**SmartPassLib Documentation**](https://github.com/smartlegionlab/smartpasslib) - Core library documentation
 
 ## 🚀 Production Deployment
@@ -240,12 +223,5 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-## 🌟 Professional Web-Based Password Management
-
-Experience enterprise-grade password management with the security of deterministic cryptography and the convenience of web accessibility.
-
-**Ready to deploy?** [Get started](https://github.com/smartlegionlab/smart-password-manager) with the web version of our smart password ecosystem.
-
----
 
 *Explore more professional tools at [Smart Legion Lab](https://github.com/smartlegionlab)*
