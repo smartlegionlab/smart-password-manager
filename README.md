@@ -18,6 +18,10 @@ Smart Password Manager (web version).
 
 > **Powered by** [smartpasslib](https://github.com/smartlegionlab/smartpasslib) - The core library for deterministic password generation.
 
+Your passwords don't need to be stored because they were never created - they already exist as mathematical certainties, waiting to be discovered through the correct combination of login and secret phrase.
+
+---
+
 ## 🚀 Quick Start
 
 ### Prerequisites
