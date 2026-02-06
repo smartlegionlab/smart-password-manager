@@ -30,11 +30,10 @@ class SmartPasswordService:
                 raise ValidationError(form.errors)
 
             secret_phrase = form.cleaned_data['secret_phrase']
-            login_ = form.cleaned_data['login']
+            description = form.cleaned_data['description']
             length = form.cleaned_data['length']
 
             public_key = SmartPasswordMaster.generate_public_key(
-                login=login_,
                 secret=secret_phrase
             )
 
@@ -43,7 +42,7 @@ class SmartPasswordService:
 
             smart_password = SmartPassword(
                 user=user,
-                login=login_,
+                description=description,
                 length=min(length, 100),
                 public_key=public_key
             )
@@ -75,7 +74,6 @@ class SmartPasswordService:
             smart_password = SmartPassword.objects.get(id=smart_pass_id, user=user)
 
             is_valid = SmartPasswordMaster.check_public_key(
-                login=smart_password.login,
                 secret=secret_phrase,
                 public_key=smart_password.public_key
             )
@@ -84,7 +82,6 @@ class SmartPasswordService:
                 raise ValidationError("Incorrect secret phrase!")
 
             password = SmartPasswordMaster.generate_smart_password(
-                login=smart_password.login,
                 secret=secret_phrase,
                 length=max(12, min(smart_password.length, 100))
             )

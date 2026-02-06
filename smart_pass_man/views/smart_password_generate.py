@@ -9,7 +9,6 @@ from smart_pass_man.services import SmartPasswordService
 
 
 @login_required
-@login_required
 def smart_password_generate_view(request, smart_pass_id):
     try:
         smart_password = SmartPassword.objects.get(id=smart_pass_id, user=request.user)

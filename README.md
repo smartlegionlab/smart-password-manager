@@ -1,8 +1,8 @@
-# Smart Password Manager Web <sup>v1.2.0</sup>
+# Smart Password Manager Web <sup>v1.3.0</sup>
 
 ---
 
-> Note: This is a production-ready password manager. For academic research on the underlying security paradigm, see [The Pointer-Based Security Paradigm](https://doi.org/10.5281/zenodo.17204738).
+> Note: This is a production-ready password manager. For academic research on the underlying security paradigms, see [The Pointer-Based Security Paradigm](https://doi.org/10.5281/zenodo.17204738), [Local Data Regeneration Paradigm](https://doi.org/10.5281/zenodo.17264327)
 
 ---
 
@@ -18,7 +18,7 @@ Smart Password Manager (web version).
 
 > **Powered by** [smartpasslib](https://github.com/smartlegionlab/smartpasslib) - The core library for deterministic password generation.
 
-Your passwords don't need to be stored because they were never created - they already exist as mathematical certainties, waiting to be discovered through the correct combination of login and secret phrase.
+Your passwords don't need to be stored because they were never created—they already exist as mathematically valid data waiting to be discovered.
 
 ---
 
@@ -163,6 +163,62 @@ This web application is part of a comprehensive suite:
 BSD 3-Clause License
 
 Copyright (c) 2025, Alexander Suvorov
+
+---
+
+## 📄 Legal Disclaimer
+
+**COMPLETE AND ABSOLUTE RELEASE FROM ALL LIABILITY**
+
+**SOFTWARE PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.**
+
+The copyright holder, contributors, and any associated parties **EXPLICITLY DISCLAIM AND DENY ALL RESPONSIBILITY AND LIABILITY** for:
+
+1. **ANY AND ALL DATA LOSS**: Complete or partial loss of passwords, accounts, credentials, cryptographic keys, or any data whatsoever
+2. **ANY AND ALL SECURITY INCIDENTS**: Unauthorized access, data breaches, account compromises, theft, or exposure of sensitive information
+3. **ANY AND ALL FINANCIAL LOSSES**: Direct, indirect, incidental, special, consequential, or punitive damages of any kind
+4. **ANY AND ALL OPERATIONAL DISRUPTIONS**: Service interruptions, account lockouts, authentication failures, or denial of service
+5. **ANY AND ALL IMPLEMENTATION ISSUES**: Bugs, errors, vulnerabilities, misconfigurations, or incorrect usage
+6. **ANY AND ALL LEGAL OR REGULATORY CONSEQUENCES**: Violations of laws, regulations, compliance requirements, or terms of service
+7. **ANY AND ALL PERSONAL OR BUSINESS DAMAGES**: Reputational harm, business interruption, loss of revenue, or any other damages
+8. **ANY AND ALL THIRD-PARTY CLAIMS**: Claims made by any other parties affected by software usage
+
+**USER ACCEPTS FULL AND UNCONDITIONAL RESPONSIBILITY**
+
+By installing, accessing, or using this software in any manner, you irrevocably agree that:
+
+- You assume **ALL** risks associated with software usage
+- You bear **SOLE** responsibility for secret phrase management and security
+- You accept **COMPLETE** responsibility for all testing and validation
+- You are **EXCLUSIVELY** liable for compliance with all applicable laws
+- You accept **TOTAL** responsibility for any and all consequences
+- You **PERMANENTLY AND IRREVOCABLY** waive, release, and discharge all claims against the copyright holder, contributors, distributors, and any associated entities
+
+**NO WARRANTY OF ANY KIND**
+
+This software comes with **ABSOLUTELY NO GUARANTEES** regarding:
+- Security effectiveness or cryptographic strength
+- Reliability or availability
+- Fitness for any particular purpose
+- Accuracy or correctness
+- Freedom from defects or vulnerabilities
+
+**NOT A SECURITY PRODUCT OR SERVICE**
+
+This is experimental software. It is not:
+- Security consultation or advice
+- A certified cryptographic product
+- A guaranteed security solution
+- Professional security software
+- Endorsed by any security authority
+
+**FINAL AND BINDING AGREEMENT**
+
+Usage of this software constitutes your **FULL AND UNCONDITIONAL ACCEPTANCE** of this disclaimer. If you do not accept **ALL** terms and conditions, **DO NOT USE THE SOFTWARE.**
+
+**BY PROCEEDING, YOU ACKNOWLEDGE THAT YOU HAVE READ THIS DISCLAIMER IN ITS ENTIRETY, UNDERSTAND ITS TERMS COMPLETELY, AND ACCEPT THEM WITHOUT RESERVATION OR EXCEPTION.**
+
+---
 
 ```
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"

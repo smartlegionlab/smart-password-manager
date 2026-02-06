@@ -15,4 +15,4 @@ class SmartPasswordForm(forms.ModelForm):
 
     class Meta:
         model = SmartPassword
-        fields = ['login', 'secret_phrase', 'length',]
+        fields = ['description', 'secret_phrase', 'length',]

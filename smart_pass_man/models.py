@@ -10,7 +10,7 @@ class SmartPassword(models.Model):
         blank=True,
         null=True
     )
-    login = models.CharField(max_length=100)
+    description = models.CharField(max_length=255)
     length = models.PositiveSmallIntegerField(default=12)
     public_key = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -21,8 +21,8 @@ class SmartPassword(models.Model):
         indexes = [
             models.Index(fields=['user', 'created_at']),
             models.Index(fields=['public_key']),
-            models.Index(fields=['login']),
+            models.Index(fields=['description']),
         ]
 
     def __str__(self):
-        return self.login
+        return self.description
