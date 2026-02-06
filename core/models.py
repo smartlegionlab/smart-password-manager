@@ -28,7 +28,6 @@ class SiteConfig(SingletonModel):
             [
                 self.name,
                 self.description,
-                self.description,
                 self.phone,
                 self.telegram_bot_token,
                 self.telegram_bot_url
