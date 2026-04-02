@@ -22,12 +22,14 @@ class BaseUserForm(forms.ModelForm):
             'first_name',
             'last_name',
             'telegram_chat_id',
+            'gender',
         ]
         labels = {
             'email': 'Email',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'telegram_chat_id': 'Telegram Chat ID',
+            'gender': 'Gender',
         }
 
     def __init__(self, *args, **kwargs):

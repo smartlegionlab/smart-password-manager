@@ -54,14 +54,6 @@
                 <span class="text-primary">
                     {% if request.user.telegram_chat_id %}
                         {{ request.user.telegram_chat_id }}
-                    {% else %}
-                        <span class="text-danger">
-                            <strong>Attention! </strong>
-                            <a href="#">Add</a>
-                            your
-                            <a target="_blank" rel="noopener noreferrer" href="https://t.me/my_id_bot">
-                                Telegram chat ID</a>. It is needed to restore access to the account, as well as for two-factor authentication!
-                        </span>
                     {% endif %}
                 </span>
             </li>
@@ -94,8 +86,4 @@
         </ul>
     </div>
     <hr>
-{% endblock %}
-
-{% block js %}
-    {% include "users/_user_detail_js.html" %}
 {% endblock %}
