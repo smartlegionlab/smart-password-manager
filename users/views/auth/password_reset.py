@@ -4,8 +4,6 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from smartpasslib import SmartPasswordMaster
 
-from core.models import SiteConfig
-from core.utils.messengers.telegram import send_telegram_message
 from users.models import User
 
 
@@ -18,23 +16,15 @@ def password_reset_view(request):
         data = json.loads(request.body)
         email = data.get('email')
         telegram_id = data.get('telegram_id')
-        site_config = SiteConfig.objects.first()
-        user = User.objects.filter(email=email, telegram_chat_id=telegram_id).first()
+        user = User.objects.filter(email=email).first()
+        temp_password = SmartPasswordMaster.generate_base_password(15)
         data = {
             'email': email,
-            'telegram_id': telegram_id,
             'profile': user,
-            'telegram_chat_id': user.telegram_chat_id if user else None,
-            'profile_chat_id': user.telegram_chat_id if telegram_id else None,
-            'site_config': site_config,
-            'telegram_bot_token': site_config.telegram_bot_token if site_config else None,
         }
         if user is not None and all(data.values()):
             temp_password = SmartPasswordMaster.generate_base_password(15)
-            status = send_telegram_message(
-                telegram_id=telegram_id,
-                message=f'The password has been reset, your new password is: \n{temp_password}'
-            )
+            status = True
             if status:
                 user.set_password(temp_password)
                 user.save()

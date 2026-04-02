@@ -2,7 +2,6 @@ from datetime import timedelta
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core.cache import cache
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.templatetags.static import static
 from django.utils import timezone
@@ -26,15 +25,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     last_activity = models.DateTimeField(default=timezone.now)
-    telegram_chat_id = models.BigIntegerField(
-        blank=True,
-        null=True,
-        verbose_name='Telegram Chat ID',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(9999999999999999999)
-        ]
-    )
     is_2fa_enabled = models.BooleanField(default=False)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O', blank=True, null=True)
     objects = CustomUserManager()
