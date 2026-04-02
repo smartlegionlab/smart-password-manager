@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import redirect
 
-from smart_pass_man.services import SmartPasswordService
+from smart_passwords.services import SmartPasswordService
 
 
 @login_required
@@ -16,4 +16,4 @@ def smart_password_delete_view(request, smart_pass_id):
     except Exception as e:
         print(e)
         messages.error(request, 'Error deleting smart password')
-    return redirect('smart_password_manager:smart_password_list')
+    return redirect('smart_passwords:smart_password_list')

@@ -8,7 +8,7 @@ from core.utils.checkers import check_phone_number
 class SiteConfigForm(forms.ModelForm):
     class Meta:
         model = SiteConfig
-        fields = ['name', 'description', 'email', 'phone', 'telegram_bot_token', 'telegram_bot_url']
+        fields = ['name', 'description', 'email',]
         widgets = {
             'name': forms.TextInput(
                 attrs={'class': 'form-control', 'placeholder': 'Enter the name of the application'}),
@@ -18,9 +18,6 @@ class SiteConfigForm(forms.ModelForm):
             'name': 'Application name',
             'description': 'Description of the application',
             'email': 'Email address',
-            'phone': 'Phone number',
-            'telegram_bot_token': 'Telegram bot token',
-            'telegram_bot_url': 'Telegram bot url',
         }
 
     def __init__(self, *args, **kwargs):
@@ -30,8 +27,3 @@ class SiteConfigForm(forms.ModelForm):
             if self.fields[field_name].required:
                 self.fields[field_name].label += ' *'
 
-    def clean_phone(self):
-        phone = self.cleaned_data.get('phone')
-        if phone and not check_phone_number(phone):
-            raise ValidationError('The phone number must start with 8 and contain 11 digits.')
-        return phone

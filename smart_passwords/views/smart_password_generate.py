@@ -3,9 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 
-from smart_pass_man.forms.secret_phrase_form import SecretPhraseForm
-from smart_pass_man.models import SmartPassword
-from smart_pass_man.services import SmartPasswordService
+from smart_passwords.forms.secret_phrase_form import SecretPhraseForm
+from smart_passwords.models import SmartPassword
+from smart_passwords.services import SmartPasswordService
 
 
 @login_required
@@ -21,7 +21,7 @@ def smart_password_generate_view(request, smart_pass_id):
 
                 request.session['password'] = password
                 messages.success(request, 'Smart Password generated successfully!')
-                return redirect('smart_password_manager:smart_password_list')
+                return redirect('smart_passwords:smart_password_list')
         else:
             form = SecretPhraseForm()
 
@@ -30,11 +30,11 @@ def smart_password_generate_view(request, smart_pass_id):
             'smart_password': smart_password,
             'active_page': 'manager',
         }
-        return render(request, 'smart_pass_man/secret_phrase_form.html', context)
+        return render(request, 'smart_passwords/secret_phrase_form.html', context)
 
     except SmartPassword.DoesNotExist:
         messages.error(request, 'Smart password not found')
-        return redirect('smart_password_manager:smart_password_list')
+        return redirect('smart_passwords:smart_password_list')
     except ValidationError as e:
         messages.error(request, e.messages[0])
-        return redirect('smart_password_manager:smart_password_list')
+        return redirect('smart_passwords:smart_password_list')

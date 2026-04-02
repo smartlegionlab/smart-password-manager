@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from core.utils.paginators import CachedCountPaginator
-from smart_pass_man.services import SmartPasswordService
+from smart_passwords.services import SmartPasswordService
 
 
 @login_required
@@ -21,4 +21,4 @@ def smart_password_list_view(request):
         'password_count': password_count,
         'has_passwords': password_count > 0,
     }
-    return render(request, 'smart_pass_man/smart_password_manager.html', context)
+    return render(request, 'smart_passwords/smart_password_manager.html', context)

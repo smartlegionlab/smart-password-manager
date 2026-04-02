@@ -5,9 +5,9 @@ from core.models import SiteConfig
 
 @admin.register(SiteConfig)
 class SiteConfigAdmin(admin.ModelAdmin):
-    fields = ('name', 'description', 'email', 'phone', 'telegram_bot_token', 'telegram_bot_url')
+    fields = ('name', 'description', 'email',)
 
-    list_display = ('name', 'email', 'phone')
+    list_display = ('name', 'email',)
 
     def has_add_permission(self, request):
         return False

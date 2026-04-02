@@ -1,6 +1,6 @@
 from django import forms
 
-from smart_pass_man.models import SmartPassword
+from smart_passwords.models import SmartPassword
 
 
 class SmartPasswordForm(forms.ModelForm):
