@@ -1,39 +1,30 @@
-import json
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
 
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from smartpasslib import SmartPasswordMaster
-
-from users.models import User
+from users.forms.reset_password_form import ResetPasswordForm
+from users.models import PasswordResetToken
 
 
-def password_reset_view(request):
-
-    if request.user.is_authenticated:
-        return redirect('users:user_detail')
-
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        email = data.get('email')
-        telegram_id = data.get('telegram_id')
-        user = User.objects.filter(email=email).first()
-        temp_password = SmartPasswordMaster.generate_base_password(15)
-        data = {
-            'email': email,
-            'profile': user,
-        }
-        if user is not None and all(data.values()):
-            temp_password = SmartPasswordMaster.generate_base_password(15)
-            status = True
-            if status:
-                user.set_password(temp_password)
-                user.save()
-                return JsonResponse({'success': True})
-            else:
-                return JsonResponse({'success': False, 'error': 'Incorrect telegram id or telegram api error.'})
-        else:
-            return JsonResponse({'success': False, 'error': 'Failed to reset password.'})
+def password_reset_view(request, token):
+    token = get_object_or_404(PasswordResetToken, token=token)
+    
+    if token.is_used:
+        messages.error(request, 'This verification link has already been used.')
+        return redirect('users:login')
+    
+    if request.method == "POST":
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
+            user = token.user
+            user.set_password(form.cleaned_data['new_password1'])
+            user.save()
+            token.use_token()
+            messages.success(request, "Your password was successfully reset! Login to your account.")
+            return redirect("users:login")
+    else:
+        form = ResetPasswordForm()
+    
     context = {
-
+        "form": form,
     }
-    return render(request, 'users/auth/password_reset_form.html', context)
+    return render(request, "users/auth/password_reset.html", context)

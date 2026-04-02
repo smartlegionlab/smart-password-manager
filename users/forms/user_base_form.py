@@ -12,12 +12,14 @@ class BaseUserForm(forms.ModelForm):
             'first_name',
             'last_name',
             'gender',
+            'bio',
         ]
         labels = {
             'email': 'Email',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'gender': 'Gender',
+            'bio': 'Bio'
         }
 
     def __init__(self, *args, **kwargs):

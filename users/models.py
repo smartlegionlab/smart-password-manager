@@ -1,4 +1,5 @@
 from datetime import timedelta
+import secrets
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.core.cache import cache
@@ -26,7 +27,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
     last_activity = models.DateTimeField(default=timezone.now)
     is_2fa_enabled = models.BooleanField(default=False)
+    bio = models.TextField(default='', blank=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O', blank=True, null=True)
+    is_email_verified = models.BooleanField(default=False)
     objects = CustomUserManager()
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
@@ -75,3 +78,94 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+
+class EmailVerificationToken(models.Model):
+    user = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        verbose_name="user",
+        related_name='verification_tokens'
+    )
+    token = models.CharField(max_length=100, unique=True, db_index=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+    
+    class Meta:
+        verbose_name = "Email Verification Token"
+        verbose_name_plural = "Email Verification Tokens"
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"Token for {self.user.email} - {'Used' if self.is_used else 'Active'}"
+    
+    def is_valid(self):
+        if self.is_used:
+            return False
+        
+        expiration_time = self.created_at + timedelta(hours=24)
+        return timezone.now() <= expiration_time
+    
+    def use_token(self):
+        self.is_used = True
+        self.save()
+        self.delete()
+    
+    @classmethod
+    def create_token(cls, user):
+        cls.objects.filter(user=user, is_used=False).delete()
+        
+        token = secrets.token_urlsafe(32)
+        return cls.objects.create(user=user, token=token)
+    
+    @classmethod
+    def cleanup_expired_tokens(cls):
+        expiration_time = timezone.now() - timedelta(hours=24)
+        deleted_count = cls.objects.filter(
+            created_at__lte=expiration_time,
+            is_used=False
+        ).delete()
+        return deleted_count[0]
+
+
+class PasswordResetToken(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pass_reset_token")
+    token = models.CharField(unique=True, max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_used = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = "Password Reset Token"
+        verbose_name_plural = "Password Reset Tokens"
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"Token for {self.user.email} - {'Used' if self.is_used else 'Active'}"
+    
+    def is_valid(self):
+        if self.is_used:
+            return False
+
+        expiration_time = self.created_at + timedelta(hours=24)
+        return timezone.now() <= expiration_time
+
+    def use_token(self):
+        self.is_used = True
+        self.save()
+        self.delete()
+    
+    @classmethod
+    def create_token(cls, user):
+        cls.objects.filter(user=user, is_used=False).delete()
+        
+        token = secrets.token_urlsafe(32)
+        return cls.objects.create(user=user, token=token)
+    
+    @classmethod
+    def cleanup_expired_tokens(cls):
+        expiration_time = timezone.now() - timedelta(hours=24)
+        deleted_count = cls.objects.filter(
+            created_at__lte=expiration_time,
+            is_used=False
+        ).delete()
+        return deleted_count[0]
