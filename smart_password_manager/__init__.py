@@ -1,4 +1,4 @@
 """Smart Password Manager"""
-__version__ = '1.3.2'
-__author__ = 'Фдучфтвук Suvorov'
+__version__ = 'v1.3.3'
+__author__ = 'Alexander Suvorov'
 __email__ = 'smartlegionlab@gmail.com'
