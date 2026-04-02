@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'users.middleware.user_activity.UpdateLastActivityMiddleware',
 ]
 
-ROOT_URLCONF = 'spm.urls'
+ROOT_URLCONF = 'smart_password_manager.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'spm.wsgi.application'
+WSGI_APPLICATION = 'smart_password_manager.wsgi.application'
 
 
 # Database
