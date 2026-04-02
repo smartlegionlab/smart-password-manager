@@ -10,10 +10,14 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 
 from users.managers.custom_user import CustomUserManager
-from users.utils.avatar_upload_path import avatar_upload_to
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    GENDER_CHOICES = [
+        ('M', 'Male'),
+        ('F', 'Female'),
+        ('O', 'Other'),
+    ]
     email = models.EmailField(unique=True, db_index=True)
     first_name = models.CharField(max_length=30, db_index=True)
     last_name = models.CharField(max_length=30, db_index=True)
@@ -21,11 +25,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    avatar = models.ImageField(
-        upload_to=avatar_upload_to,
-        blank=True,
-        null=True
-    )
     last_activity = models.DateTimeField(default=timezone.now)
     telegram_chat_id = models.BigIntegerField(
         blank=True,
@@ -37,14 +36,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         ]
     )
     is_2fa_enabled = models.BooleanField(default=False)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O', blank=True, null=True)
     objects = CustomUserManager()
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
-    def get_avatar_url(self):
-        if self.avatar and hasattr(self.avatar, 'url'):
-            return self.avatar.url
+    def get_avatar(self):
+        if self.gender == "M":
+            return static('images/male.jpeg')
+        elif self.gender == "F":
+            return static('images/female.jpeg')
         return static('images/default_avatar.png')
 
     def toggle_2fa(self):
@@ -80,9 +82,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     def switch_activity(self):
         self.is_active = not self.is_active
         self.save()
-
-    def avatar_upload_to(self, filename):
-        return f"avatars/{self.pk}/{filename}"
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

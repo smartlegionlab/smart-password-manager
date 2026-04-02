@@ -17,15 +17,6 @@
         </div>
     </div>
     <hr>
-
-    <div class="alert alert-warning" role="alert">
-        <p>Attention! Activate two-factor authentication only if you have the correct <a target="_blank" rel="noopener noreferrer"
-                                                                                         href="https://t.me/my_id_bot">telegram
-            chat id</a> and are subscribed to the <a target="_blank" rel="noopener noreferrer" href="{% if site_config.telegram_bot_url %}{{ site_config.telegram_bot_url }}{% else %}#{% endif %}">official
-            bot.</a></p>
-        <p class="text-danger">Otherwise, you will not receive a temporary code to enter the application!</p>
-    </div>
-    <hr>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -54,6 +45,7 @@
     <script>
         $(document).ready(function () {
             $('#id_email, #id_first_name, #id_last_name, #id_telegram_chat_id').addClass('form-control');
+            $("#id_gender").removeClass('form-control').addClass('form-select');
         });
     </script>
 {% endblock %}

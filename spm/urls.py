@@ -10,7 +10,7 @@ handler403 = custom_403_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('users.urls')),
-    path('smart-password-manager/', include('smart_pass_man.urls')),
+    path('smart-passwords/', include('smart_passwords.urls')),
     path('admin-panel/', include('admin_panel.urls')),
 ]
 

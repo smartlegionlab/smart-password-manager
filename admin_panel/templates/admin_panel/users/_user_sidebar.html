@@ -1,7 +1,7 @@
 <div id="blockAvatar" class="text-center">
 
         <figure class="figure">
-            <img src="{{ user.get_avatar_url }}" class="figure-img img-thumbnail img-fluid rounded"
+            <img src="{{ user.get_avatar }}" class="figure-img img-thumbnail img-fluid rounded"
                  alt="Profile Picture">
         </figure>
 
@@ -9,7 +9,7 @@
 
         <div class="btn-group-vertical w-100 figure-img img-thumbnail rounded" role="group">
             <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Admin panel"
-               href="{% url 'admin_panel:admin_user_list' %}" class="btn btn-outline-primary mb-1">
+               href="{% url 'admin_panel:admin_user_list' %}" class="btn btn-outline-warning mb-1">
                 <i class="bi bi-arrow-left"></i> Admin Panel
             </a>
             <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Admin panel"
@@ -31,5 +31,4 @@
                 <i class="bi bi-trash-fill"></i> Delete profile
             </a>
         </div>
-
-    </div>
+</div>

@@ -4,8 +4,8 @@ import logging
 
 from smartpasslib.masters.smart_password_master import SmartPasswordMaster
 
-from smart_pass_man.forms.smart_password_form import SmartPasswordForm
-from smart_pass_man.models import SmartPassword
+from smart_passwords.forms.smart_password_form import SmartPasswordForm
+from smart_passwords.models import SmartPassword
 
 logger = logging.getLogger(__name__)
 

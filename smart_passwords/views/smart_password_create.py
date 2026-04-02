@@ -3,8 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 
-from smart_pass_man.forms.smart_password_form import SmartPasswordForm
-from smart_pass_man.services import SmartPasswordService
+from smart_passwords.forms.smart_password_form import SmartPasswordForm
+from smart_passwords.services import SmartPasswordService
 
 
 @login_required
@@ -14,7 +14,7 @@ def smart_password_create_view(request):
         try:
             SmartPasswordService.create_smart_password(request.user, request.POST)
             messages.success(request, 'Smart Password created successfully!')
-            return redirect('smart_password_manager:smart_password_list')
+            return redirect('smart_passwords:smart_password_list')
         except ValidationError as e:
             messages.error(request, e.messages[0])
         except Exception as e:
@@ -27,4 +27,4 @@ def smart_password_create_view(request):
         'form': form,
         'active_page': 'manager',
     }
-    return render(request, 'smart_pass_man/smart_password_form.html', context)
+    return render(request, 'smart_passwords/smart_password_form.html', context)
