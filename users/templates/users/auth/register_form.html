@@ -38,6 +38,11 @@
             </div>
         {% endif %}
 
+        <div class="alert alert-primary alert-dismissible" role="alert">
+            <p class="text-center lead">If you forgot your password, you can
+                <a href="{% url "users:password_forgot" %}" class="text-warning">reset</a> it.</p>
+        </div>
+
     </div>
 {% endblock %}
 {% block js %}

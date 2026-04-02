@@ -1,19 +1,9 @@
 from django import forms
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 from users.models import User
 
 
 class BaseAdminUserForm(forms.ModelForm):
-    telegram_chat_id = forms.IntegerField(
-        required=False,
-        label='Telegram Chat ID',
-        validators=[
-            MinValueValidator(1),
-            MaxValueValidator(9999999999999999999)
-        ],
-        widget=forms.TextInput(attrs={'maxlength': '18'})
-    )
 
     class Meta:
         model = User
@@ -21,7 +11,6 @@ class BaseAdminUserForm(forms.ModelForm):
             'email',
             'first_name',
             'last_name',
-            'telegram_chat_id',
             'is_active',
             'is_staff',
             'is_superuser',

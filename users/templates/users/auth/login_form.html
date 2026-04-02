@@ -25,14 +25,10 @@
                         class="text-decoration-none text-danger" href="mailto:{{ site_config.email }}">here</a>.</p>
             </div>
         {% endif %}
-        {% if site_config.telegram_bot_token %}
-            <div class="alert alert-primary alert-dismissible" role="alert">
-                <p class="text-center lead">If you forgot your password and your profile had a telegram chat id, you can
-                    <a href="{% url "users:password_reset" %}" class="text-warning">reset</a> it. The <a target="_blank" rel="noopener noreferrer" class="text-success"
-                                                                                    href="{{ site_config.telegram_bot_url }}">bot</a>
-                    will send it to you in telegram.</p>
-            </div>
-        {% endif %}
+        <div class="alert alert-primary alert-dismissible" role="alert">
+            <p class="text-center lead">If you forgot your password, you can
+                <a href="{% url "users:password_forgot" %}" class="text-warning">reset</a> it.</p>
+        </div>
 
     </div>
 {% endblock %}

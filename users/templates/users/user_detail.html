@@ -50,15 +50,6 @@
             </li>
 
             <li class="list-group-item">
-                <strong>Telegram ID:</strong>
-                <span class="text-primary">
-                    {% if request.user.telegram_chat_id %}
-                        {{ request.user.telegram_chat_id }}
-                    {% endif %}
-                </span>
-            </li>
-
-            <li class="list-group-item">
                 <strong>Two-factor authentication:</strong>
                 <span class="text-primary">
                 {% if request.user.is_2fa_enabled %}
@@ -80,6 +71,13 @@
                 <strong>Account created:</strong>
                 <span class="text-primary">
                         {{ request.user.created_at|date:"d.m.Y H:i:s" }}
+                </span>
+            </li>
+
+            <li class="list-group-item">
+                <strong>Account created:</strong>
+                <span class="text-primary">
+                        {{ request.user.bio|slice:"100" }}
                 </span>
             </li>
 

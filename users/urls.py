@@ -10,10 +10,10 @@ from users.views.auth.password_change import password_change_view
 from users.views.auth.password_generate import password_generate_view
 from users.views.auth.password_reset import password_reset_view
 from users.views.auth.register import register_view
-from users.views.auth.two_factor import auth_2fa_view, auth_2fa_check_code
 from users.views.user.user_delete import user_delete_view
 from users.views.user.user_detail import user_detail_view
 from users.views.user.user_update import user_update_view
+from users.views.auth.password_forgot import password_forgot_view, resend_password_reset_view
 
 app_name = 'users'
 
@@ -27,9 +27,9 @@ urlpatterns = [
     path('delete/', user_delete_view, name='user_delete'),
     path('update/', user_update_view, name='user_update'),
     path('register/', register_view, name='register'),
-    path('auth-2fa/<str:token>/', auth_2fa_view, name='auth_2fa'),
-    path('auth-2fa/check/code/', auth_2fa_check_code, name='auth_2fa_check_code'),
-    path('password/reset/', password_reset_view, name='password_reset'),
+    path('password/forgot/', password_forgot_view, name='password_forgot'),
+    path('password/reset/resend/', resend_password_reset_view, name='resend_password_reset'),
+    path('password/reset/<token>/', password_reset_view, name='password_reset'),
     path('password/change/', password_change_view, name='password_change'),
     path('password/generate/', password_generate_view, name='password_generate'),
 ]

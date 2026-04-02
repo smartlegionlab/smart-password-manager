@@ -20,23 +20,6 @@
             <li class="list-group-item"><strong>Email:</strong> <span class="text-primary">{% if user.email %}
                 {{ user.email }}{% endif %}</span></li>
             <li class="list-group-item">
-                <strong>Telegram ID:</strong>
-                <span class="text-primary">
-                                {% if user.telegram_chat_id %}
-                                    {{ user.telegram_chat_id }}
-                                    {% else %}{% if is_owner %}
-                                        <span class="text-danger">
-                                            <strong>Attention! </strong>
-                                            <a href="{% url "users:user_update" %}">Add</a>
-                                            your
-                                            <a target="_blank" rel="noopener noreferrer" href="https://t.me/my_id_bot">
-                                                Telegram chat ID</a>. It is needed to restore access to the account, as well as for two-factor authentication!
-                                        </span>
-                                    {% endif %}
-                                {% endif %}
-                            </span>
-            </li>
-            <li class="list-group-item">
                 <strong>Two-factor authentication:</strong>
                 <span class="text-primary">
                                 {% if user.is_2fa_enabled %}

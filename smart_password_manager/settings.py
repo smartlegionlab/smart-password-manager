@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'users.middleware.user_activity.UpdateLastActivityMiddleware',
 ]
 
-ROOT_URLCONF = 'spm.urls'
+ROOT_URLCONF = 'smart_password_manager.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'spm.wsgi.application'
+WSGI_APPLICATION = 'smart_password_manager.wsgi.application'
 
 
 # Database
@@ -220,3 +220,19 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SITE_NAME = 'Smart Password Manager'
+
+# Email settings
+EMAIL_ON = os.getenv('EMAIL_ON', 'False') == 'True'
+if EMAIL_ON:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.timeweb.ru')
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_USE_SSL = False
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
