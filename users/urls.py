@@ -14,6 +14,7 @@ from users.views.user.user_delete import user_delete_view
 from users.views.user.user_detail import user_detail_view
 from users.views.user.user_update import user_update_view
 from users.views.auth.password_forgot import password_forgot_view, resend_password_reset_view
+from users.views.auth.verify_view import resend_verification_view, verify_email_view
 
 app_name = 'users'
 
@@ -27,6 +28,8 @@ urlpatterns = [
     path('delete/', user_delete_view, name='user_delete'),
     path('update/', user_update_view, name='user_update'),
     path('register/', register_view, name='register'),
+    path('verify/<str:token>/', verify_email_view, name='verify_email'),
+    path('resend-verification/', resend_verification_view, name='resend_verification'),
     path('password/forgot/', password_forgot_view, name='password_forgot'),
     path('password/reset/resend/', resend_password_reset_view, name='resend_password_reset'),
     path('password/reset/<token>/', password_reset_view, name='password_reset'),
