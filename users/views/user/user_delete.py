@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.decorators.http import require_http_methods
+from core.models import SiteConfig
 
 from core.services.email_service import Email
 
@@ -16,10 +17,10 @@ def user_delete_view(request):
     try:
         msg = f"""Hey, {full_name}. I want to notify you,
         that your account was successfully deleted!"""
-        
+        site_config = SiteConfig.objects.last()
         Email.notification(
             to=email,
-            title="Account deletion",
+            title=f"{site_config.name}: Account deletion",
             message=msg,
         )
         
