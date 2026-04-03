@@ -1,4 +1,4 @@
-# Smart Password Manager Web <sup>v1.3.4</sup>
+# Smart Password Manager Web <sup>v1.3.5</sup>
 
 ---
 
