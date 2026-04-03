@@ -1,13 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
-from smartpasslib import SmartPasswordMaster, UrandomGenerator, HashGenerator
+from django.urls import reverse
+from django.utils.safestring import mark_safe
 
-from auth_logs.models import UserAuthLog
-from core.utils.informers.request_info import RequestInfo
-from core.utils.smart_redis.smart_redis_storage import RedisStorageManager
 from users.forms.login_form import LoginForm
 from users.models import User
+from auth_logs.models import UserAuthLog
+from core.utils.informers.request_info import RequestInfo
 
 
 def login_view(request):
@@ -35,6 +35,17 @@ def login_view(request):
 
             if not user.is_active:
                 messages.error(request, 'Account is not active! To activate, please contact your administrator.')
+                return redirect('users:login')
+
+            if not user.is_email_verified:
+                resend_url = reverse('users:resend_verification')
+                message = mark_safe(
+                    f'Please verify your email address first. '
+                    f'Check your inbox at {user.email} or '
+                    f'<a href="{resend_url}?email={user.email}" class="alert-link">'
+                    f'click here to resend verification email</a>'
+                )
+                messages.error(request, message)
                 return redirect('users:login')
 
             login(request, user)

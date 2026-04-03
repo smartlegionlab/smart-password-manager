@@ -5,47 +5,134 @@
 
 {% block content %}
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="h3 mb-0">
-            <i class="bi bi-gear me-2"></i> Profile Settings:
-        </h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3 mb-0">
+        <i class="bi bi-gear me-2"></i> Profile Settings:
+    </h1>
 
-        <div class="btn-group btn-group-sm">
-            <a href="{% url 'users:user_detail' %}" class="btn btn-outline-secondary d-lg-none">
-                <i class="bi bi-arrow-left"></i> {{ request.userfull_name }}
-            </a>
+    <div class="btn-group btn-group-sm">
+        <a href="{% url 'users:user_detail' %}" class="btn btn-outline-secondary d-lg-none">
+            <i class="bi bi-arrow-left"></i> {{ request.user.full_name }}
+        </a>
+    </div>
+</div>
+<hr>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|capfirst }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+<hr>
+
+<form method="post" action="{% url 'users:user_delete' %}" id="deleteForm" style="display: none;">
+    {% csrf_token %}
+</form>
+
+<div class="card border-danger mt-4">
+    <div class="card-body">
+        <h3 class="text-danger h5 fw-bold mb-3">
+            <i class="bi bi-trash-fill"></i> DELETE ACCOUNT
+        </h3>
+        <p class="text-muted small mb-3">
+            Once you delete your account, there is no going back. All your data will be permanently removed.
+        </p>
+        
+        <div class="mb-3">
+            <label for="delete_confirmation" class="form-label fw-bold">
+                Type <span class="text-danger">"DELETE ANYWAY"</span> to confirm
+            </label>
+            <input type="text" class="form-control" id="delete_confirmation" placeholder="DELETE ANYWAY">
+        </div>
+        
+        <button type="button" class="btn btn-danger w-100" id="deleteAccountBtn" disabled>
+            <i class="bi bi-trash"></i> DELETE MY ACCOUNT
+        </button>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill"></i> Delete Account
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center mb-3">
+                    <i class="bi bi-person-x display-1 text-danger"></i>
+                </div>
+                <h5 class="text-center mb-3">Are you absolutely sure?</h5>
+                <p class="text-muted text-center mb-3">
+                    This action <strong>cannot be undone</strong>. This will permanently delete your account
+                    and remove all your data from our servers.
+                </p>
+                <div class="alert alert-warning">
+                    <i class="bi bi-info-circle"></i> Please type <strong class="text-danger">"DELETE ANYWAY"</strong> to confirm.
+                </div>
+                <input type="text" class="form-control" id="modal_delete_confirmation" placeholder="DELETE ANYWAY">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-lg"></i> Cancel
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn" disabled>
+                    <i class="bi bi-trash"></i> Yes, Delete My Account
+                </button>
+            </div>
         </div>
     </div>
-    <hr>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if form.errors %}
-            <div class="alert alert-danger">
-                <ul>
-                    {% for field, errors in form.errors.items %}
-                        {% for error in errors %}
-                            <li>{{ field|capfirst }}: {{ error }}</li>
-                        {% endfor %}
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endif %}
-        <button type="submit" class="btn btn-success">Save</button>
-    </form>
-    <hr>
-    <p class="text-center lead">You can also <a href="{% url "users:user_delete" %}"
-                                                onclick="return confirm('Do you really want to delete your profile? Think carefully before deleting, as it will be impossible to restore the profile')"
-                                                class="text-danger">delete</a> your profile.</p>
+</div>
 
 {% endblock %}
 
 {% block js %}
-
-    <script>
-        $(document).ready(function () {
-            $('#id_email, #id_first_name, #id_last_name, #id_bio').addClass('form-control');
-            $("#id_gender").removeClass('form-control').addClass('form-select');
+<script>
+    $(document).ready(function () {
+        $('#id_email, #id_first_name, #id_last_name, #id_bio').addClass('form-control');
+        $("#id_gender").removeClass('form-control').addClass('form-select');
+        
+        const deleteInput = $("#delete_confirmation");
+        const deleteBtn = $("#deleteAccountBtn");
+        
+        deleteInput.on("input", function() {
+            deleteBtn.prop("disabled", $(this).val() !== "DELETE ANYWAY");
         });
-    </script>
+        
+        deleteBtn.on("click", function() {
+            if (!deleteBtn.prop("disabled")) {
+                const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+                modal.show();
+                $("#modal_delete_confirmation").val("").trigger("input");
+            }
+        });
+        
+        const modalDeleteInput = $("#modal_delete_confirmation");
+        const confirmDeleteBtn = $("#confirmDeleteBtn");
+        
+        modalDeleteInput.on("input", function() {
+            confirmDeleteBtn.prop("disabled", $(this).val() !== "DELETE ANYWAY");
+        });
+        
+        confirmDeleteBtn.on("click", function() {
+            if (!confirmDeleteBtn.prop("disabled")) {
+                document.getElementById('deleteForm').submit();
+            }
+        });
+    });
+</script>
 {% endblock %}

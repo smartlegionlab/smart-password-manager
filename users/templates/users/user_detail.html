@@ -17,6 +17,9 @@
         </sup>
     </h1>
 
+    <hr>
+    <p class="text-center text-primary">{{ request.user.bio }}</p>
+
     {% if not request.user.is_online %}
         <p class="text-center text-danger">Last activity date: <span
             class="text-secondary">{{ request.user.last_activity|timesince }}</span> ago</p>
@@ -71,13 +74,6 @@
                 <strong>Account created:</strong>
                 <span class="text-primary">
                         {{ request.user.created_at|date:"d.m.Y H:i:s" }}
-                </span>
-            </li>
-
-            <li class="list-group-item">
-                <strong>Account created:</strong>
-                <span class="text-primary">
-                        {{ request.user.bio|slice:"100" }}
                 </span>
             </li>
 
