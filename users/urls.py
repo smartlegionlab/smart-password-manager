@@ -4,8 +4,6 @@ from django.urls import path
 
 from users.views.auth.login import login_view
 from users.views.auth.logout import logout_view
-from users.views.user.avatar_reset import user_avatar_reset_view
-from users.views.user.avatar_upload import user_avatar_upload_view
 from users.views.auth.password_change import password_change_view
 from users.views.auth.password_generate import password_generate_view
 from users.views.auth.password_reset import password_reset_view
@@ -23,8 +21,6 @@ urlpatterns = [
     path('', user_detail_view, name='user_detail'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
-    path('avatar/reset/', user_avatar_reset_view, name='avatar_reset'),
-    path('avatar/upload/', user_avatar_upload_view, name='avatar_upload'),
     path('delete/', user_delete_view, name='user_delete'),
     path('update/', user_update_view, name='user_update'),
     path('register/', register_view, name='register'),

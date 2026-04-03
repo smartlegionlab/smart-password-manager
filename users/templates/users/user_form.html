@@ -34,9 +34,11 @@
         <button type="submit" class="btn btn-success">Save</button>
     </form>
     <hr>
-    <p class="text-center lead">You can also <a href="{% url "users:user_delete" %}"
-                                                onclick="return confirm('Do you really want to delete your profile? Think carefully before deleting, as it will be impossible to restore the profile')"
-                                                class="text-danger">delete</a> your profile.</p>
+    <form method="post" action="{% url 'users:user_delete' %}" 
+      onsubmit="return confirm('Do you really want to delete your profile? Think carefully before deleting, as it will be impossible to restore the profile')">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete my profile</button>
+    </form>
 
 {% endblock %}
 
