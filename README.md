@@ -2,6 +2,12 @@
 
 ---
 
+**Smart Password Manager (web version)**
+
+> **Powered by** [smartpasslib](https://github.com/smartlegionlab/smartpasslib) - The core library for deterministic password generation.
+
+Your passwords don't need to be stored because they were never created—they already exist as mathematically valid data waiting to be discovered.
+
 > Note: This is a production-ready password manager. For academic research on the underlying security paradigms, see [The Pointer-Based Security Paradigm](https://doi.org/10.5281/zenodo.17204738), [Local Data Regeneration Paradigm](https://doi.org/10.5281/zenodo.17264327)
 
 ---
@@ -12,13 +18,15 @@
 [![GitHub stars](https://img.shields.io/github/stars/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/smartlegionlab/smart-password-manager?style=social)](https://github.com/smartlegionlab/smart-password-manager/network/members)
 
-## Web-Based Smart Password Management
+---
 
-Smart Password Manager (web version).
+## ⚠️ Disclaimer
 
-> **Powered by** [smartpasslib](https://github.com/smartlegionlab/smartpasslib) - The core library for deterministic password generation.
+**By using this software, you agree to the full disclaimer terms.**
 
-Your passwords don't need to be stored because they were never created—they already exist as mathematically valid data waiting to be discovered.
+**Summary:** Software provided "AS IS" without warranty. You assume all risks.
+
+**Full legal disclaimer:** See [DISCLAIMER.md](https://github.com/smartlegionlab/smart-password-manager/blob/master/DISCLAIMER.md)
 
 ---
 
